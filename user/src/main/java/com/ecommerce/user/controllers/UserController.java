@@ -15,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> GetUserByID(@PathVariable Long id) {
+    public ResponseEntity<UserResponse> GetUserByID(@PathVariable String id) {
         return userService
                 .findUserById(id)
                 .map(ResponseEntity::ok)
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public boolean updateUser(@PathVariable Long id, @RequestBody UserRequest model) {
+    public boolean updateUser(@PathVariable String id, @RequestBody UserRequest model) {
         return userService.updateUser(id, model);
     }
 

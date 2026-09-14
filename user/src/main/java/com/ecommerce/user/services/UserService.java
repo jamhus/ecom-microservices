@@ -31,13 +31,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<UserResponse> findUserById(Long id) {
+    public Optional<UserResponse> findUserById(String id) {
 
         return userRepository.findById(id)
                 .map(this::mapToUserResponse);
     }
 
-    public boolean updateUser(Long id, UserRequest model) {
+    public boolean updateUser(String id, UserRequest model) {
         return userRepository.findById(id)
             .map(user -> {
                 MapToUser(user,model);
@@ -60,6 +60,7 @@ public class UserService {
             var addressDto = new AddressDto();
             addressDto.setStreet(user.getAddress().getStreet());
             addressDto.setCity(user.getAddress().getCity());
+            addressDto.setState(user.getAddress().getState());
             addressDto.setZipCode(user.getAddress().getZipCode());
             response.setAddress(addressDto);
         }
@@ -76,6 +77,7 @@ public class UserService {
             var address = new Address();
             address.setStreet(userRequest.getAddress().getStreet());
             address.setCity(userRequest.getAddress().getCity());
+            address.setState(userRequest.getAddress().getState());
             address.setZipCode(userRequest.getAddress().getZipCode());
             model.setAddress(address);
         }
