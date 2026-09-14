@@ -1,8 +1,8 @@
-package com.app.ecomapplication.controller;
+package com.ecommerce.product.controllers;
 
-import com.app.ecomapplication.models.dtos.ProductRequest;
-import com.app.ecomapplication.models.dtos.ProductResponse;
-import com.app.ecomapplication.service.ProductService;
+import com.ecommerce.product.models.dtos.ProductRequest;
+import com.ecommerce.product.models.dtos.ProductResponse;
+import com.ecommerce.product.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

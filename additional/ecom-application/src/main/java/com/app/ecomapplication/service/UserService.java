@@ -1,11 +1,11 @@
 package com.app.ecomapplication.service;
 
-import com.app.ecomapplication.entity.Address;
-import com.app.ecomapplication.entity.dto.AddressDto;
-import com.app.ecomapplication.entity.dto.UserRequest;
-import com.app.ecomapplication.entity.dto.UserResponse;
+import com.app.ecomapplication.models.Address;
+import com.app.ecomapplication.models.dtos.AddressDto;
+import com.app.ecomapplication.models.dtos.UserRequest;
+import com.app.ecomapplication.models.dtos.UserResponse;
 import com.app.ecomapplication.repository.UserRepository;
-import com.app.ecomapplication.entity.User;
+import com.app.ecomapplication.models.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

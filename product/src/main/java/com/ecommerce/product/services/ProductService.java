@@ -1,9 +1,9 @@
-package com.app.ecomapplication.service;
+package com.ecommerce.product.services;
 
-import com.app.ecomapplication.models.Product;
-import com.app.ecomapplication.models.dtos.ProductRequest;
-import com.app.ecomapplication.models.dtos.ProductResponse;
-import com.app.ecomapplication.repository.ProductRepository;
+import com.ecommerce.product.models.Product;
+import com.ecommerce.product.models.dtos.ProductRequest;
+import com.ecommerce.product.models.dtos.ProductResponse;
+import com.ecommerce.product.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

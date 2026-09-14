@@ -1,7 +1,7 @@
 package com.app.ecomapplication.controller;
 
-import com.app.ecomapplication.entity.dto.UserRequest;
-import com.app.ecomapplication.entity.dto.UserResponse;
+import com.app.ecomapplication.models.dtos.UserRequest;
+import com.app.ecomapplication.models.dtos.UserResponse;
 import com.app.ecomapplication.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

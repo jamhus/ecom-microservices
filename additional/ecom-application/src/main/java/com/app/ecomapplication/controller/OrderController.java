@@ -1,6 +1,6 @@
 package com.app.ecomapplication.controller;
 
-import com.app.ecomapplication.entity.dto.OrderResponse;
+import com.app.ecomapplication.models.dtos.OrderResponse;
 import com.app.ecomapplication.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

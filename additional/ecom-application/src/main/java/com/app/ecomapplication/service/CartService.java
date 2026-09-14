@@ -1,10 +1,9 @@
 package com.app.ecomapplication.service;
 
-import com.app.ecomapplication.entity.CartItem;
-import com.app.ecomapplication.entity.Product;
-import com.app.ecomapplication.entity.User;
-import com.app.ecomapplication.entity.dto.CartItemRequest;
-import com.app.ecomapplication.entity.dto.CartItemResponse;
+import com.app.ecomapplication.models.CartItem;
+import com.app.ecomapplication.models.Product;
+import com.app.ecomapplication.models.User;
+import com.app.ecomapplication.models.dtos.CartItemRequest;
 import com.app.ecomapplication.repository.CartItemRepository;
 import com.app.ecomapplication.repository.ProductRepository;
 import com.app.ecomapplication.repository.UserRepository;
@@ -13,10 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

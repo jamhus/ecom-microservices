@@ -1,8 +1,7 @@
 package com.app.ecomapplication.controller;
 
-import com.app.ecomapplication.entity.CartItem;
-import com.app.ecomapplication.entity.dto.CartItemRequest;
-import com.app.ecomapplication.entity.dto.CartItemResponse;
+import com.app.ecomapplication.models.CartItem;
+import com.app.ecomapplication.models.dtos.CartItemRequest;
 import com.app.ecomapplication.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

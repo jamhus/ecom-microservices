@@ -1,8 +1,8 @@
 package com.app.ecomapplication.repository;
 
-import com.app.ecomapplication.entity.CartItem;
-import com.app.ecomapplication.entity.Product;
-import com.app.ecomapplication.entity.User;
+import com.app.ecomapplication.models.CartItem;
+import com.app.ecomapplication.models.Product;
+import com.app.ecomapplication.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

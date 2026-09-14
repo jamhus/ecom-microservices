@@ -1,8 +1,8 @@
 package com.app.ecomapplication.service;
 
-import com.app.ecomapplication.entity.*;
-import com.app.ecomapplication.entity.dto.OrderItemDto;
-import com.app.ecomapplication.entity.dto.OrderResponse;
+import com.app.ecomapplication.models.*;
+import com.app.ecomapplication.models.dtos.OrderItemDto;
+import com.app.ecomapplication.models.dtos.OrderResponse;
 import com.app.ecomapplication.repository.OrderRepository;
 import com.app.ecomapplication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
