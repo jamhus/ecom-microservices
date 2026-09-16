@@ -56,12 +56,14 @@ public class UserService {
         response.setEmail(user.getEmail());
         response.setRole(user.getRole());
 
+
         if(user.getAddress() != null) {
             var addressDto = new AddressDto();
             addressDto.setStreet(user.getAddress().getStreet());
             addressDto.setCity(user.getAddress().getCity());
             addressDto.setState(user.getAddress().getState());
             addressDto.setZipCode(user.getAddress().getZipCode());
+            addressDto.setCountry(user.getAddress().getCountry());
             response.setAddress(addressDto);
         }
         return response;
@@ -79,6 +81,7 @@ public class UserService {
             address.setCity(userRequest.getAddress().getCity());
             address.setState(userRequest.getAddress().getState());
             address.setZipCode(userRequest.getAddress().getZipCode());
+            address.setCountry(userRequest.getAddress().getCountry());
             model.setAddress(address);
         }
 

@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - postgres
+      - app-network
     restart: unless-stopped
 
   pgadmin:
@@ -26,13 +26,43 @@ services:
     ports:
       - "5050:80"
     networks:
-      - postgres
+      - app-network
+    restart: unless-stopped
+
+  mongodb:
+    container_name: mongodb_container
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_DATABASE: userdb
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  mongo-express:
+    container_name: mongo_express_container
+    image: mongo-express:latest
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+      ME_CONFIG_BASICAUTH: "false"
+    ports:
+      - "8085:8081"
+    networks:
+      - app-network
+    depends_on:
+      - mongodb
     restart: unless-stopped
 
 networks:
-  postgres:
+  app-network:
     driver: bridge
 
 volumes:
   postgres:
   pgadmin:
+  mongodb_data:
