@@ -7,7 +7,7 @@ spring:
     config:
       server:
         native:
-          search-locations: file:///C:\Users\jamal\Documents\Repos\ecom-microservices\configserver\src\main\resources\config
+          search-locations: classpath:/config
   rabbitmq:
     host: localhost
     port: 5672

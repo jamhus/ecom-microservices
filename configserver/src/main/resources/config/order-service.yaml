@@ -14,11 +14,25 @@ spring:
     port: 5672
     username: guest
     password: guest
+  cloud:
+    loadbalancer:
+      eureka:
+        enabled: true
+      cache:
+        enabled: false
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
 server:
   port: 8083
-

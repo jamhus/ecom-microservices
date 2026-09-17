@@ -3,3 +3,18 @@ spring:
     name: order-service
   config:
     import: optional:configserver:http://localhost:8888
+  cloud:
+    loadbalancer:
+      eureka:
+        enabled: true
+      cache:
+        enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true

@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="uereka" />
         <module name="configserver" />
       </profile>
       <profile name="Annotation profile for order" enabled="true">
@@ -31,6 +32,7 @@
       <module name="ecom-application" options="-parameters" />
       <module name="order" options="-parameters" />
       <module name="product" options="-parameters" />
+      <module name="uereka" options="-parameters" />
       <module name="user" options="-parameters" />
     </option>
   </component>
