@@ -12,6 +12,13 @@ management:
     web:
       exposure:
         include: "*"
+Logging:
+  file:
+    name: logs/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      maxHistory: 7
+      maxFileSize: 5MB
 eureka:
   client:
     service-url:

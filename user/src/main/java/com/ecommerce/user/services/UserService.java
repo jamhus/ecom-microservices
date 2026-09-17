@@ -7,6 +7,7 @@ import com.ecommerce.user.models.dtos.UserRequest;
 import com.ecommerce.user.models.dtos.UserResponse;
 import com.ecommerce.user.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
     private final UserRepository userRepository;
 
@@ -32,9 +34,14 @@ public class UserService {
     }
 
     public Optional<UserResponse> findUserById(String id) {
-
-        return userRepository.findById(id)
+        var user = userRepository.findById(id)
                 .map(this::mapToUserResponse);
+        if(user.isEmpty()) {
+            log.error("User with id {} not found", id);
+            return Optional.empty();
+        }
+        log.info("User with id {} found", id);
+        return user;
     }
 
     public boolean updateUser(String id, UserRequest model) {
