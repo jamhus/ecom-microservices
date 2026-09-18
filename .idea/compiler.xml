@@ -7,7 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="uereka" />
+        <module name="eureka" />
+        <module name="gateway" />
         <module name="configserver" />
       </profile>
       <profile name="Annotation profile for user" enabled="true">
@@ -24,7 +25,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ecom-application" target="26" />
-      <module name="eureka" target="17" />
+      <module name="uereka" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -32,6 +33,7 @@
       <module name="configserver" options="-parameters" />
       <module name="ecom-application" options="-parameters" />
       <module name="eureka" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="order" options="-parameters" />
       <module name="product" options="-parameters" />
       <module name="uereka" options="-parameters" />
