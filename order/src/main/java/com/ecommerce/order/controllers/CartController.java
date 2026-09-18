@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cart")
 @RequiredArgsConstructor
-public class CartController {
+public class  CartController {
 
     private final CartService cartService;
 
@@ -22,7 +22,7 @@ public class CartController {
             @RequestHeader("X-User-ID") String userId,
             @RequestBody CartItemRequest request) {
         if (!cartService.addToCart(userId, request)) {
-            return ResponseEntity.badRequest().body("Product Out of Stock or User not found or Product not found");
+            return ResponseEntity.badRequest().body("Not able to complete the request");
         }
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

@@ -8,9 +8,12 @@ import com.ecommerce.order.models.dtos.ProductResponse;
 import com.ecommerce.order.models.dtos.UserResponse;
 import com.ecommerce.order.repositories.CartItemRepository;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,7 +25,7 @@ public class CartService {
     private final CartItemRepository cartItemRepository;
     private final ProductServiceClient productServiceClient;
     private final UserServiceClient userServiceClient;
-
+    @CircuitBreaker(name = "productService", fallbackMethod = "addToCartFallback")
     public boolean addToCart(String userId, CartItemRequest request) {
 
         ProductResponse product = productServiceClient.getProductById(request.getProductId());
@@ -70,5 +73,14 @@ public class CartService {
 
     public void clearCart(String userId) {
         cartItemRepository.deleteByUserId(userId);
+    }
+
+    public boolean addToCartFallback(String userId,
+                                     CartItemRequest request,
+                                     Throwable exception) {
+        throw new ResponseStatusException(
+                HttpStatus.SERVICE_UNAVAILABLE,
+                "User or product service is unavailable",
+                exception);
     }
 }

@@ -18,7 +18,6 @@ public class UserServiceClientConfig {
             @Qualifier("loadBalancedRestClientBuilder") RestClient.Builder builder) {
         RestClient restClient = builder
                 .baseUrl("http://user-service")
-                .defaultStatusHandler(HttpStatusCode::is4xxClientError,((req, res)-> Optional.empty()))
                 .build();
 
         RestClientAdapter adapter = RestClientAdapter
