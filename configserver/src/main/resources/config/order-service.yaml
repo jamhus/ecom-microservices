@@ -34,13 +34,5 @@ eureka:
     registry-fetch-interval-seconds: 5
   instance:
     prefer-ip-address: true
-
-Logging:
-  file:
-    name: logs/${spring.application.name}.log
-  logback:
-    rollingpolicy:
-      maxHistory: 7
-      maxFileSize: 5MB
 server:
   port: 8083
