@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/uereka/pom.xml" />
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/notifications/pom.xml" />
       </list>
     </option>
   </component>

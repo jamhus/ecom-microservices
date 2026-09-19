@@ -24,3 +24,9 @@ eureka:
 server:
   port: 8082
 
+rabbitmq:
+  exchange:
+    name: user.exchange
+  queue:
+    name: user.queue
+  routing-key: user.tracking

@@ -4,14 +4,18 @@ import com.ecommerce.order.models.CartItem;
 import com.ecommerce.order.models.Order;
 import com.ecommerce.order.models.OrderItem;
 import com.ecommerce.order.models.OrderStatus;
+import com.ecommerce.order.models.dtos.OrderCreatedEvent;
 import com.ecommerce.order.models.dtos.OrderItemDto;
 import com.ecommerce.order.models.dtos.OrderResponse;
 import com.ecommerce.order.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -19,6 +23,13 @@ import java.util.Optional;
 public class OrderService {
     private final CartService cartService;
     private final OrderRepository orderRepository;
+    private final RabbitTemplate rabbitTemplate;
+
+    @Value("${rabbitmq.exchange.name}")
+    private String exchangeName;
+
+    @Value("${rabbitmq.routing-key}")
+    private String routingKey;
 
     public Optional<OrderResponse> createOrder(String userId) {
         // Validate for cart items
@@ -61,23 +72,41 @@ public class OrderService {
         // Clear the cart
         cartService.clearCart(userId);
 
+        // publish order created event
+        OrderCreatedEvent event = new OrderCreatedEvent(
+                savedOrder.getId(),
+                savedOrder.getUserId(),
+                savedOrder.getStatus(),
+                savedOrder.getTotalAmount(),
+                mapToOrderItemDtos(order.getOrderItems()),
+                savedOrder.getCreatedAt()
+        );
+
+        rabbitTemplate.convertAndSend(
+                exchangeName,
+                routingKey,
+                event);
+
         return Optional.of(mapToOrderResponse(savedOrder));
     }
 
+    private List<OrderItemDto> mapToOrderItemDtos(List<OrderItem> orderItems){
+        return orderItems.stream()
+                .map(orderItem -> new OrderItemDto(
+                        orderItem.getId(),
+                        orderItem.getProductId(),
+                        orderItem.getQuantity(),
+                        orderItem.getPrice(),
+                        orderItem.getPrice().multiply(new BigDecimal(orderItem.getQuantity()))
+                ))
+                .toList();
+    }
     private OrderResponse mapToOrderResponse(Order order) {
         return new OrderResponse(
                 order.getId(),
                 order.getTotalAmount(),
                 order.getStatus(),
-                order.getOrderItems().stream()
-                        .map(orderItem -> new OrderItemDto(
-                                orderItem.getId(),
-                                orderItem.getProductId(),
-                                orderItem.getQuantity(),
-                                orderItem.getPrice(),
-                                orderItem.getPrice().multiply(new BigDecimal(orderItem.getQuantity()))
-                        ))
-                        .toList(),
+                mapToOrderItemDtos(order.getOrderItems()),
                 order.getCreatedAt()
         );
     }

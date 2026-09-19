@@ -30,3 +30,10 @@ eureka:
     prefer-ip-address: true
 server:
   port: 8081
+
+rabbitmq:
+  exchange:
+    name: product.exchange
+  queue:
+    name: product.queue
+  routing-key: product.tracking
